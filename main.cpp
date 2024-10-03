@@ -1,3 +1,8 @@
+// COMSC210 | Lab 17 | Winston Jose
+// IDE used: Visual Studio Code
+// Github link: https://github.com/winstonjose01/210-lab-17-starter 
+
+
 #include <iostream>
 using namespace std;
 
@@ -11,7 +16,7 @@ struct Node {
 // Function prototypes
 void add_node (Node *&, int n);
 void delete_node(Node *&, int n);
-void delete_list(Node *);
+void delete_list(Node *&);
 
 void output(Node *);
 
@@ -68,7 +73,7 @@ int main() {
     // insert a node
     //current = head;
     cout << "After which node to insert 10000? " << endl;
-    count = 1;
+    //count = 1;
     output (head);
     // while (current) {
     //     cout << "[" << count++ << "] " << current->value << endl;
@@ -93,21 +98,21 @@ int main() {
     // newnode->next = current;
     // prev->next = newnode;
     output(head);
-
+    delete_list(head);
     // deleting the linked list
-    current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-    head = nullptr;
+    // current = head;
+    // while (current) {
+    //     head = current->next;
+    //     delete current;
+    //     current = head;
+    // }
+    // head = nullptr;
     output(head);
 
     return 0;
 }
 // This functions adds a new node to the linked list
-// arguments: Node * head, and integer n
+// arguments: Node * head, and integer n (user entry)
 // return: void
 void add_node(Node *&head, int n){
 
@@ -128,6 +133,9 @@ void add_node(Node *&head, int n){
 
 }
 
+// This functions deletes a new node to the linked list
+// arguments: Node * head, and integer n (user entry)
+// return: void
 void delete_node (Node *&head, int n){
 
     Node * current = head;
@@ -145,6 +153,18 @@ void delete_node (Node *&head, int n){
         delete current;
         current = nullptr;
     }
+
+}
+
+void delete_list(Node *&head){
+
+    Node * current = head;
+    while (current) {
+        head = current->next;
+        delete current;
+        current = head;
+    }
+    head = nullptr;
 
 }
 
