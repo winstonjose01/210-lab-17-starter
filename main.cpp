@@ -14,8 +14,10 @@ struct Node {
 };
 
 // Function prototypes
-void add_node (Node *&, int n);
-void delete_node(Node *&, int n);
+void add_node_front (Node *&, int);
+void add_node_tail (Node *&, int);
+void add_node (Node *&, int);
+void delete_node(Node *&, int);
 void delete_list(Node *&);
 
 void output(Node *);
@@ -31,9 +33,10 @@ int main() {
         
         // adds node at head
         if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
+            // head = newVal;
+            // newVal->next = nullptr;
+            // newVal->value = tmp_val;
+            add_node_front(head, tmp_val);
         }
         else { // its a second or subsequent node; place at the head
             newVal->next = head;
@@ -111,6 +114,18 @@ int main() {
 
     return 0;
 }
+
+void add_node_front (Node *&head, int tmp){
+    Node *newVal = new Node;
+    newVal->next = nullptr;
+    newVal->value = tmp;
+    head = newVal;
+
+}
+
+
+
+
 // This functions adds a new node to the linked list
 // arguments: Node * head, and integer n (user entry)
 // return: void
