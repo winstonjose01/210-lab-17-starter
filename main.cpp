@@ -120,6 +120,24 @@ void add_node_front (Node *&head, int tmp){
     newVal->next = nullptr;
     newVal->value = tmp;
     head = newVal;
+}
+
+void add_node_tail (Node *&head, int tmp){
+    Node *newVal = new Node;
+    Node *current = new Node; //
+    newVal->next = nullptr;
+    newVal->value = tmp;
+
+    if (!head){
+        head = newVal;
+    }
+    else{
+        current = head; // Start to traverse list from head
+        while (current){ // traverse until 
+            current = current->next;
+        }
+        current->next = newVal;
+    }
 
 }
 
