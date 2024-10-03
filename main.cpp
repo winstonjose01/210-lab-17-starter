@@ -8,7 +8,7 @@ struct Node {
     Node *next;
 };
 
-
+// Function prototypes
 void add_node (Node *&, int n);
 void delete_node(Node *&, int n);
 void delete_list(Node *);
@@ -39,39 +39,41 @@ int main() {
     output(head);
 
     // deleting a node
-    Node * current = head;
+    //Node * current = head;
     cout << "Which node to delete? " << endl;
     output(head);
     int entry;
     cout << "Choice --> ";
     cin >> entry;
 
+    delete_node(head, entry);
     // traverse that many times and delete that node
-    current = head;
-    Node *prev = head;
-    for (int i = 0; i < (entry-1); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    // at this point, delete current and reroute pointers
-    if (current) {  // checks for current to be valid before deleting the node
-        prev->next = current->next;
-        delete current;
-        current = nullptr;
-    }
+    // current = head;
+    // Node *prev = head;
+    // for (int i = 0; i < (entry-1); i++)
+    //     if (i == 0)
+    //         current = current->next;
+    //     else {
+    //         current = current->next;
+    //         prev = prev->next;
+    //     }
+    // // at this point, delete current and reroute pointers
+    // if (current) {  // checks for current to be valid before deleting the node
+    //     prev->next = current->next;
+    //     delete current;
+    //     current = nullptr;
+    // }
     output(head);
 
     // insert a node
-    current = head;
+    //current = head;
     cout << "After which node to insert 10000? " << endl;
     count = 1;
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
+    output (head);
+    // while (current) {
+    //     cout << "[" << count++ << "] " << current->value << endl;
+    //     current = current->next;
+    // }
     cout << "Choice --> ";
     cin >> entry;
 
@@ -123,6 +125,26 @@ void add_node(Node *&head, int n){
     newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;
+
+}
+
+void delete_node (Node *&head, int n){
+
+    Node * current = head;
+    Node *prev = head;
+    for (int i = 0; i < (n-1); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    // at this point, delete current and reroute pointers
+    if (current) {  // checks for current to be valid before deleting the node
+        prev->next = current->next;
+        delete current;
+        current = nullptr;
+    }
 
 }
 
