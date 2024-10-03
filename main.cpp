@@ -33,15 +33,9 @@ int main() {
         
         // adds node at head
         if (!head) { // if this is the first node, it's the new head
-            // head = newVal;
-            // newVal->next = nullptr;
-            // newVal->value = tmp_val;
             add_node_front(head, tmp_val);
         }
         else { // its a second or subsequent node; place at the head
-            // newVal->next = head;
-            // newVal->value = tmp_val;
-            // head = newVal;
             add_node_tail(head, tmp_val);
         }
     }
@@ -77,15 +71,18 @@ int main() {
     return 0;
 }
 
+// This functions adds a new node to front of the list
+// arguments: Node *head reference, and integer tmp (random generated integer)
+// return: void
 void add_node_front (Node *&head, int tmp){
     Node *newVal = new Node;
-    newVal->next = nullptr;
+    newVal->next = head; // Assign the va
     newVal->value = tmp;
     head = newVal;
 }
 
-// This functions adds a new node to the linked list
-// arguments: Node * head, and integer n (user entry)
+// This functions adds a new node to end of the list
+// arguments: Node *head reference, and integer tmp (random generated integer)
 // return: void
 void add_node_tail (Node *&head, int tmp){
     Node *newVal = new Node;
@@ -94,21 +91,20 @@ void add_node_tail (Node *&head, int tmp){
     newVal->value = tmp;
 
     if (!head){
-        head = newVal;
+        head = newVal; // If list empty new node becomes the head
     }
     else{
         current = head; // Start to traverse list from head
-        while (current->next){ // traverse until 
-            current = current->next;
+        while (current->next){ // Traverse until last node fuound
+            current = current->next; // Move to the next node
         }
-        current->next = newVal;
+        current->next = newVal; //Set the next pointer of the current last node to the new node
     }
 
 }
 
-
 // This functions adds a new node to the linked list
-// arguments: Node * head, and integer n (user entry)
+// arguments: Node *head reference, and integer n (user entry)
 // return: void
 void add_node(Node *&head, int n){
 
