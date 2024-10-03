@@ -54,49 +54,25 @@ int main() {
     int entry;
     cout << "Choice --> ";
     cin >> entry;
-
-    delete_node(head, entry);
-
-    output(head);
-
-    // insert a node
-    //current = head;
+    // Call function to delete a node
+    delete_node(head, entry); 
+    // Output the list after deleting the node
+    output(head); 
+    // Prompt the user which node to insert 10000
     cout << "After which node to insert 10000? " << endl;
-    //count = 1;
+    // Output the list to help user select
     output (head);
-    // while (current) {
-    //     cout << "[" << count++ << "] " << current->value << endl;
-    //     current = current->next;
-    // }
     cout << "Choice --> ";
+    // Save the choice to variable entry
     cin >> entry;
-
+    // Call function to add a node in the middle of the list
     add_node(head, entry);
-    // current = head;
-    // prev = head;
-    // for (int i = 0; i < (entry); i++)
-    //     if (i == 0)
-    //         current = current->next;
-    //     else {
-    //         current = current->next;
-    //         prev = prev->next;
-    //     }
-    // //at this point, insert a node between prev and current
-    // Node * newnode = new Node;
-    // newnode->value = 10000;
-    // newnode->next = current;
-    // prev->next = newnode;
+    // Output the list after adding the 1000 value node
     output(head);
+    // Call function to delete the entire list
     delete_list(head);
-    // deleting the linked list
-    // current = head;
-    // while (current) {
-    //     head = current->next;
-    //     delete current;
-    //     current = head;
-    // }
-    // head = nullptr;
-    output(head);
+    // Output the list after deleting
+    output(head); 
 
     return 0;
 }
