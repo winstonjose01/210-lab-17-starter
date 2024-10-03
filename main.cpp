@@ -48,10 +48,12 @@ int main() {
     int entry;
     cout << "Choice --> ";
     cin >> entry;
+
     // Call function to delete a node
     delete_node(head, entry); 
     // Output the list after deleting the node
     output(head); 
+
     // Prompt the user which node to insert 10000
     cout << "After which node to insert 10000? " << endl;
     // Output the list to help user select
@@ -63,6 +65,7 @@ int main() {
     add_node(head, entry);
     // Output the list after adding the 1000 value node
     output(head);
+
     // Call function to delete the entire list
     delete_list(head);
     // Output the list after deleting
@@ -75,20 +78,20 @@ int main() {
 // arguments: Node *head reference, and integer tmp (random generated integer)
 // return: void
 void add_node_front (Node *&head, int tmp){
-    Node *newVal = new Node;
-    newVal->next = head; // Assign the va
-    newVal->value = tmp;
-    head = newVal;
+    Node *newVal = new Node; // Create a new node
+    newVal->next = head;    // Assign the value to the new node
+    newVal->value = tmp;    // Point the new node to the current head of the list
+    head = newVal;          // Update the head to be the new node.
 }
 
 // This functions adds a new node to end of the list
 // arguments: Node *head reference, and integer tmp (random generated integer)
 // return: void
 void add_node_tail (Node *&head, int tmp){
-    Node *newVal = new Node;
-    Node *current = new Node; //
-    newVal->next = nullptr;
-    newVal->value = tmp;
+    Node *newVal = new Node;  // Create a new node
+    Node *current = new Node; 
+    newVal->next = nullptr; // Since its the last node, pointer is set to nullptr
+    newVal->value = tmp;  // Assign the value to the new node
 
     if (!head){
         head = newVal; // If list empty new node becomes the head
@@ -108,8 +111,9 @@ void add_node_tail (Node *&head, int tmp){
 // return: void
 void add_node(Node *&head, int n){
 
-    Node * current = head;
-    Node * prev = head;
+    Node * current = head; // Start pointer at the head of the list
+    Node * prev = head;  // Create a pointer to track the previous node
+    // Travers the list to find the n position
     for (int i = 0; i < (n); i++)
         if (i == 0)
             current = current->next;
@@ -117,11 +121,11 @@ void add_node(Node *&head, int n){
             current = current->next;
             prev = prev->next;
         }
-    //at this point, insert a node between prev and current
+    //At this point, insert a node between prev and current
     Node * newnode = new Node;
-    newnode->value = 10000;
-    newnode->next = current;
-    prev->next = newnode;
+    newnode->value = 10000; // Assign the value to the new node
+    newnode->next = current; // Insert the new node between prev and current
+    prev->next = newnode; // The previous node points to the new node
 
 }
 
@@ -130,11 +134,12 @@ void add_node(Node *&head, int n){
 // return: void
 void delete_node (Node *&head, int n){
 
-    Node * current = head;
-    Node *prev = head;
+    Node * current = head; // Start pointer at the head of the list
+    Node *prev = head; // Create a pointer to track the previous node
+    // Traverse the list to find the nth node
     for (int i = 0; i < (n-1); i++)
         if (i == 0)
-            current = current->next;
+            current = current->next; 
         else {
             current = current->next;
             prev = prev->next;
@@ -142,21 +147,21 @@ void delete_node (Node *&head, int n){
     // at this point, delete current and reroute pointers
     if (current) {  // checks for current to be valid before deleting the node
         prev->next = current->next;
-        delete current;
-        current = nullptr;
+        delete current; // Delete the node
+        current = nullptr; // Set the pointer to null
     }
 
 }
 
 void delete_list(Node *&head){
 
-    Node * current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
+    Node * current = head; // Start pointer at the head of the list
+    while (current) {       // Loop until current is nullptr
+        head = current->next; // Move the pointer to the next node
+        delete current;     // Delete the current node
+        current = head;     // Move the current node to the next node
     }
-    head = nullptr;
+    head = nullptr; // Once all nodes deleted, set head to nullptr
 
 }
 
