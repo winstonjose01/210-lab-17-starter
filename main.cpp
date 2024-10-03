@@ -14,11 +14,11 @@ struct Node {
 };
 
 // Function prototypes
-void add_node_front (Node *&, int);
-void add_node_tail (Node *&, int);
-void add_node (Node *&, int);
-void delete_node(Node *&, int);
-void delete_list(Node *&);
+void add_node_front (Node *&, int); // Adds a node to the front (head) of the list
+void add_node_tail (Node *&, int);  // Adds a node to the tail of the list
+void add_node (Node *&, int);       // Adds a node in between other nodes
+void delete_node(Node *&, int);     // Deletes a node
+void delete_list(Node *&);          // Deletes the entire linked list
 
 void output(Node *);
 
@@ -39,9 +39,10 @@ int main() {
             add_node_front(head, tmp_val);
         }
         else { // its a second or subsequent node; place at the head
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
+            // newVal->next = head;
+            // newVal->value = tmp_val;
+            // head = newVal;
+            add_node_tail(head, tmp_val);
         }
     }
     output(head);
@@ -55,22 +56,7 @@ int main() {
     cin >> entry;
 
     delete_node(head, entry);
-    // traverse that many times and delete that node
-    // current = head;
-    // Node *prev = head;
-    // for (int i = 0; i < (entry-1); i++)
-    //     if (i == 0)
-    //         current = current->next;
-    //     else {
-    //         current = current->next;
-    //         prev = prev->next;
-    //     }
-    // // at this point, delete current and reroute pointers
-    // if (current) {  // checks for current to be valid before deleting the node
-    //     prev->next = current->next;
-    //     delete current;
-    //     current = nullptr;
-    // }
+
     output(head);
 
     // insert a node
@@ -122,6 +108,9 @@ void add_node_front (Node *&head, int tmp){
     head = newVal;
 }
 
+// This functions adds a new node to the linked list
+// arguments: Node * head, and integer n (user entry)
+// return: void
 void add_node_tail (Node *&head, int tmp){
     Node *newVal = new Node;
     Node *current = new Node; //
@@ -133,15 +122,13 @@ void add_node_tail (Node *&head, int tmp){
     }
     else{
         current = head; // Start to traverse list from head
-        while (current){ // traverse until 
+        while (current->next){ // traverse until 
             current = current->next;
         }
         current->next = newVal;
     }
 
 }
-
-
 
 
 // This functions adds a new node to the linked list
