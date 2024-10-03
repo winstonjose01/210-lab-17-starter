@@ -8,6 +8,11 @@ struct Node {
     Node *next;
 };
 
+
+void add_node (Node *&, int n);
+void delete_node(Node *&, int n);
+void delete_list(Node *);
+
 void output(Node *);
 
 int main() {
@@ -70,20 +75,21 @@ int main() {
     cout << "Choice --> ";
     cin >> entry;
 
-    current = head;
-    prev = head;
-    for (int i = 0; i < (entry); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    //at this point, insert a node between prev and current
-    Node * newnode = new Node;
-    newnode->value = 10000;
-    newnode->next = current;
-    prev->next = newnode;
+    add_node(head, entry);
+    // current = head;
+    // prev = head;
+    // for (int i = 0; i < (entry); i++)
+    //     if (i == 0)
+    //         current = current->next;
+    //     else {
+    //         current = current->next;
+    //         prev = prev->next;
+    //     }
+    // //at this point, insert a node between prev and current
+    // Node * newnode = new Node;
+    // newnode->value = 10000;
+    // newnode->next = current;
+    // prev->next = newnode;
     output(head);
 
     // deleting the linked list
@@ -97,6 +103,27 @@ int main() {
     output(head);
 
     return 0;
+}
+// This functions adds a new node to the linked list
+// arguments: Node * head, and integer n
+// return: void
+void add_node(Node *&head, int n){
+
+    Node * current = head;
+    Node * prev = head;
+    for (int i = 0; i < (n); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    //at this point, insert a node between prev and current
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = current;
+    prev->next = newnode;
+
 }
 
 void output(Node * hd) {
